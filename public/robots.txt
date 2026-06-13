@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://topik-app-v2.vercel.app/sitemap.xml
