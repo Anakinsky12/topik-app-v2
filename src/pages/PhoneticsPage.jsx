@@ -3,8 +3,8 @@ import { SpeakButton } from '../components/Common'
 
 export default function PhoneticsPage() {
   return (
-    <div className="max-w-3xl mx-auto p-5">
-      <h1 className="text-2xl font-bold mb-1">🔤 Talaffuz qoidalari</h1>
+    <div className="max-w-3xl mx-auto px-5 py-8">
+      <h1 className="text-3xl font-bold tracking-tight mb-1">🔤 Talaffuz qoidalari</h1>
       <p className="text-text2 text-sm mb-5">Koreys fonetik qoidalari — yozilishi va o'qilishi farqi</p>
 
       {PHONETICS.rules.map((rule, i) => (

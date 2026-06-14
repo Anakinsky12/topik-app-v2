@@ -8,12 +8,12 @@ export default function DialogsPage() {
   if (active) {
     const d = active
     return (
-      <div className="max-w-3xl mx-auto p-5">
+      <div className="max-w-3xl mx-auto px-5 py-8">
         <button onClick={() => setActive(null)} className="text-text2 text-sm hover:text-text1 mb-4">← Orqaga</button>
         <div className="flex items-center gap-3 mb-1">
           <span className="text-3xl">{d.icon}</span>
           <div>
-            <h1 className="text-2xl font-bold">{d.title} <span className="text-text2 text-lg">{d.titleKor}</span></h1>
+            <h1 className="text-3xl font-bold tracking-tight">{d.title} <span className="text-text2 text-lg">{d.titleKor}</span></h1>
             <span className={`text-[11px] px-2 py-0.5 rounded-full font-semibold ${d.level === '3-4' ? 'bg-yellow/15 text-yellow' : 'bg-accent/15 text-accent'}`}>{d.level}</span>
           </div>
         </div>
@@ -85,8 +85,8 @@ export default function DialogsPage() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-5">
-      <h1 className="text-2xl font-bold mb-1">💬 Dialoglar ({DIALOGS.length})</h1>
+    <div className="max-w-3xl mx-auto px-5 py-8">
+      <h1 className="text-3xl font-bold tracking-tight mb-1">💬 Dialoglar ({DIALOGS.length})</h1>
       <p className="text-text2 text-sm mb-5">Hayotiy vaziyatlar bo'yicha suhbatlar — audio bilan</p>
       <div className="grid sm:grid-cols-2 gap-3">
         {DIALOGS.map(d => (

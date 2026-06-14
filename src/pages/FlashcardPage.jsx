@@ -50,8 +50,8 @@ export default function FlashcardPage() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-5 flex flex-col items-center">
-      <h1 className="text-2xl font-bold mb-4">🃏 Flashcard mashqi</h1>
+    <div className="max-w-2xl mx-auto px-5 py-8 flex flex-col items-center">
+      <h1 className="text-3xl font-bold tracking-tight mb-4">🃏 Flashcard mashqi</h1>
 
       <div className="flex flex-wrap gap-2 mb-5 justify-center">
         {FILTERS.map(([key, label]) => (

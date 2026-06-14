@@ -32,7 +32,7 @@ export function LiveClock() {
 
   return (
     <div className="text-right leading-tight">
-      <div className="text-sm font-bold tabular-nums text-accent">{time}</div>
+      <div className="text-sm font-bold tabular text-accent">{time}</div>
       <div className="text-[10px] text-text2">
         {dateStr} ({WEEKDAYS_KO[wd]}) · {WEEKDAYS_UZ[wd]}
       </div>

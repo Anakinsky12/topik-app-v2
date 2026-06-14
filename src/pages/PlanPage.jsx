@@ -71,8 +71,8 @@ export default function PlanPage() {
   })
 
   return (
-    <div className="max-w-3xl mx-auto p-5">
-      <h1 className="text-2xl font-bold mb-5">📅 Kunlik Reja</h1>
+    <div className="max-w-3xl mx-auto px-5 py-8">
+      <h1 className="text-3xl font-bold tracking-tight mb-5">📅 Kunlik Reja</h1>
 
       <div className="grid grid-cols-3 gap-3 mb-5">
         <div className="bg-bg2 border border-yellow/50 rounded-xl p-4 text-center">

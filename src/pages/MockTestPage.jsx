@@ -43,8 +43,8 @@ export default function MockTestPage() {
 
   // === Test tanlash ===
   if (!test) return (
-    <div className="max-w-3xl mx-auto p-5">
-      <h1 className="text-2xl font-bold mb-1">📊 Mock Test</h1>
+    <div className="max-w-3xl mx-auto px-5 py-8">
+      <h1 className="text-3xl font-bold tracking-tight mb-1">📊 Mock Test</h1>
       <p className="text-text2 text-sm mb-5">Real TOPIK II formatida vaqtli imtihon</p>
       {MOCK_TESTS.map(t => (
         <button key={t.id} onClick={() => start(t)}
@@ -68,8 +68,8 @@ export default function MockTestPage() {
     const right = test.questions.filter((q, i) => answers[i] === q.ans).length
     const pct = Math.round(right / test.questions.length * 100)
     return (
-      <div className="max-w-3xl mx-auto p-5">
-        <h1 className="text-2xl font-bold mb-5">📊 Test Natijalari</h1>
+      <div className="max-w-3xl mx-auto px-5 py-8">
+        <h1 className="text-3xl font-bold tracking-tight mb-5">📊 Test Natijalari</h1>
         <div className="grid grid-cols-3 gap-3 mb-6">
           <div className="bg-bg2 border border-border1 rounded-xl p-4 text-center">
             <div className="text-3xl font-bold text-green">{right}</div>
@@ -112,7 +112,7 @@ export default function MockTestPage() {
   const isLast = current === test.questions.length - 1
 
   return (
-    <div className="max-w-3xl mx-auto p-5">
+    <div className="max-w-3xl mx-auto px-5 py-8">
       <div className="flex justify-between items-center mb-4 flex-wrap gap-2">
         <button onClick={() => setTest(null)} className="text-text2 text-sm hover:text-text1">← Chiqish</button>
         <div className="flex-1 mx-4 hidden sm:block">

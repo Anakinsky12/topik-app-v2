@@ -45,9 +45,9 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center p-5">
       <div className="w-full max-w-md bg-bg2 border border-border1 rounded-2xl p-8">
         <div className="text-center mb-7">
-          <div className="text-4xl mb-2">📚</div>
-          <h1 className="text-2xl font-bold text-accent">TOPIK II Trener</h1>
-          <p className="text-text2 text-sm mt-1">
+          <div className="text-[11px] uppercase tracking-[0.2em] text-text3 mb-2 font-semibold">한국어 · O'zbek</div>
+          <h1 className="text-2xl font-bold tracking-tight">TOPIK II Trener</h1>
+          <p className="text-text2 text-sm mt-1.5">
             {mode === 'login' ? 'Hisobingizga kiring' : "Yangi hisob yarating"}
           </p>
         </div>

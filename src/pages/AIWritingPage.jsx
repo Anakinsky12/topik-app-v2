@@ -70,8 +70,8 @@ Quyidagi JSON formatda javob bering (boshqa hech narsa yozmang, faqat JSON):
   const scoreColor = (s) => s >= 80 ? 'text-green' : s >= 60 ? 'text-yellow' : 'text-red'
 
   return (
-    <div className="max-w-2xl mx-auto p-5">
-      <h1 className="text-2xl font-bold mb-1">✍️ AI Yozuv tekshiruvi</h1>
+    <div className="max-w-2xl mx-auto px-5 py-8">
+      <h1 className="text-3xl font-bold tracking-tight mb-1">✍️ AI Yozuv tekshiruvi</h1>
       <p className="text-text2 text-sm mb-5">Insho yozing — AI baholaydi, xatolarni tuzatadi, ball beradi</p>
 
       {/* Mavzu tanlash */}

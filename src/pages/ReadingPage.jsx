@@ -13,7 +13,7 @@ export default function ReadingPage() {
     const p = active
     const right = p.questions.filter((q, i) => answers[i] === q.ans).length
     return (
-      <div className="max-w-3xl mx-auto p-5">
+      <div className="max-w-3xl mx-auto px-5 py-8">
         <button onClick={() => setActive(null)} className="text-text2 text-sm hover:text-text1 mb-4">← Orqaga</button>
         <div className="flex items-center gap-2 mb-1">
           <h1 className="text-xl font-bold">{p.title}</h1>
@@ -67,7 +67,7 @@ export default function ReadingPage() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-5">
+    <div className="max-w-3xl mx-auto px-5 py-8">
       <h1 className="text-2xl font-bold mb-1">📖 O'qish mashqi ({READING_PASSAGES.length})</h1>
       <p className="text-text2 text-sm mb-5">Matnni o'qing, savollarga javob bering</p>
       <div className="grid sm:grid-cols-2 gap-3">

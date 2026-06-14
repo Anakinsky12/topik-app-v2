@@ -1,27 +1,67 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0f0f1a;
-  --color-bg2: #161628;
-  --color-bg3: #1e1e35;
-  --color-accent: #818cf8;
-  --color-accent2: #6366f1;
-  --color-green: #34d399;
-  --color-red: #f87171;
-  --color-yellow: #fbbf24;
-  --color-text1: #e2e8f0;
-  --color-text2: #94a3b8;
-  --color-border1: #2d2d4e;
+  /* Toza akademik fokus — quyuq ko'mir + sovuq indigo */
+  --color-bg: #0a0a0f;
+  --color-bg2: #111119;
+  --color-bg3: #1a1a26;
+  --color-accent: #6d8cff;
+  --color-accent2: #4f6ef0;
+  --color-green: #3ddc97;
+  --color-red: #ff6b6b;
+  --color-yellow: #f5c451;
+  --color-text1: #eceef3;
+  --color-text2: #8a8fa3;
+  --color-text3: #5a5e72;
+  --color-border1: #21212f;
+  --color-border2: #2c2c40;
+
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
+
+* { -webkit-tap-highlight-color: transparent; }
 
 body {
   background: var(--color-bg);
   color: var(--color-text1);
-  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-family: var(--font-sans);
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  letter-spacing: -0.011em;
 }
+
+/* Raqamlar uchun mono — professional ko'rinish */
+.tabular { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* Nozik scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-border2); border-radius: 5px; border: 2px solid var(--color-bg); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-text3); }
 
 /* Telefonда pastki menyu uchun joy */
 @media (max-width: 639px) {
-  body { padding-bottom: 60px; }
+  body { padding-bottom: 64px; }
 }
+
+/* Reduced motion hurmat */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* Fokus ko'rinishi — klaviatura uchun */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Yumshoq kirish animatsiyasi */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.4s ease both; }

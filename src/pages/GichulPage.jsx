@@ -13,7 +13,7 @@ export default function GichulPage() {
     const right = allQs.filter(q => answers[q.id] === q.ans).length
 
     return (
-      <div className="max-w-3xl mx-auto p-5">
+      <div className="max-w-3xl mx-auto px-5 py-8">
         <button onClick={() => setTest(null)} className="text-text2 text-sm hover:text-text1 mb-4">← Orqaga</button>
         <h1 className="text-xl font-bold mb-1">{test.title}</h1>
         <p className="text-text2 text-sm mb-5">{test.year}-yil · {test.session}</p>
@@ -69,7 +69,7 @@ export default function GichulPage() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-5">
+    <div className="max-w-3xl mx-auto px-5 py-8">
       <h1 className="text-2xl font-bold mb-1">🎯 기출문제 (Real imtihonlar)</h1>
       <p className="text-text2 text-sm mb-5">Haqiqiy o'tgan TOPIK imtihon savollari — izohlar bilan</p>
       <div className="grid gap-3">

@@ -50,8 +50,8 @@ export default function SRSPage() {
   if (!started) {
     const due = dueIds().length
     return (
-      <div className="max-w-xl mx-auto p-5">
-        <h1 className="text-2xl font-bold mb-1">🧠 Aqlli takrorlash (SRS)</h1>
+      <div className="max-w-xl mx-auto px-5 py-8">
+        <h1 className="text-3xl font-bold tracking-tight mb-1">🧠 Aqlli takrorlash (SRS)</h1>
         <p className="text-text2 text-sm mb-6">
           Ilmiy isbotlangan tizim: so'zni eslab qolish ehtimoli pasayganda aynan o'sha payt takrorlaysiz.
         </p>
@@ -88,7 +88,7 @@ export default function SRSPage() {
   // === Tugadi ===
   if (idx >= queue.length) {
     return (
-      <div className="max-w-xl mx-auto p-5 text-center">
+      <div className="max-w-xl mx-auto px-5 py-8 text-center">
         <div className="text-5xl mb-4">🎉</div>
         <h2 className="text-xl font-bold mb-2">Mashq tugadi!</h2>
         <p className="text-text2 mb-6">✅ {done.correct} to'g'ri · ❌ {done.wrong} xato</p>
@@ -105,7 +105,7 @@ export default function SRSPage() {
   if (!word) { setIdx(i => i + 1); return null }
 
   return (
-    <div className="max-w-xl mx-auto p-5 flex flex-col items-center">
+    <div className="max-w-xl mx-auto px-5 py-8 flex flex-col items-center">
       <p className="text-text2 text-sm mb-4 self-stretch text-center">
         {idx + 1} / {queue.length} · ✅ {done.correct} · ❌ {done.wrong}
       </p>

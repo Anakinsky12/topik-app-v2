@@ -43,8 +43,8 @@ export default function AchievementsPage() {
   const unlocked = ACHIEVEMENTS.filter(a => isUnlocked(a.id)).length
 
   return (
-    <div className="max-w-3xl mx-auto p-5">
-      <h1 className="text-2xl font-bold mb-1">🏆 Yutuqlar</h1>
+    <div className="max-w-3xl mx-auto px-5 py-8">
+      <h1 className="text-3xl font-bold tracking-tight mb-1">🏆 Yutuqlar</h1>
       <p className="text-text2 text-sm mb-5">{unlocked} / {ACHIEVEMENTS.length} ochildi</p>
 
       <div className="bg-bg3 rounded-full h-2 overflow-hidden mb-6">
