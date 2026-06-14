@@ -6,6 +6,7 @@ import { SpeakButton } from '../components/Common'
 const PER_PAGE = 30
 const FILTERS = [
   ['all', 'Hammasi'],
+  ['1-2', '1-2 daraja'],
   ['3-4', '3-4 daraja'],
   ['5-6', '5-6 daraja'],
   ['learned', "✅ O'rganildi"],
@@ -20,7 +21,7 @@ export default function VocabPage() {
 
   const filtered = useMemo(() => {
     let list = VOCAB
-    if (filter === '3-4' || filter === '5-6') list = list.filter(w => w.l === filter)
+    if (filter === '1-2' || filter === '3-4' || filter === '5-6') list = list.filter(w => w.l === filter)
     if (filter === 'learned') list = list.filter(w => progress[w.id] === 'known')
     if (filter === 'rest') list = list.filter(w => progress[w.id] !== 'known')
     if (search.trim()) {
@@ -83,6 +84,7 @@ export default function VocabPage() {
                 <div className="pr-8">
                   <span className="text-lg font-bold">{w.word}</span> <SpeakButton text={w.word} />
                   <span className={`ml-2 text-[11px] px-2 py-0.5 rounded-full font-semibold ${
+                    w.l === '1-2' ? 'bg-green-500/15 text-green-400' :
                     w.l === '3-4' ? 'bg-yellow/15 text-yellow' : 'bg-accent/15 text-accent'
                   }`}>{w.l}</span>
                 </div>
