@@ -2,13 +2,13 @@ import { useMemo, useState } from 'react'
 import { VOCAB } from '../data/vocab'
 import { useWordProgress } from '../lib/useWordProgress'
 import { SpeakButton } from '../components/Common'
-import { speakKorean } from '../lib/tts'
 
 const FILTERS = [
   ['all', 'Hammasi'],
-  ['3-4', '3-4 daraja'],
-  ['5-6', '5-6 daraja'],
-  ['unlearned', "🔖 O'rganilmagan"],
+  ['1-2', '1-2급'],
+  ['3-4', '3-4급'],
+  ['5-6', '5-6급'],
+  ['unlearned', "O'rganilmagan"],
 ]
 
 const shuffle = (arr) => {
@@ -29,7 +29,7 @@ export default function FlashcardPage() {
   const [session, setSession] = useState({ know: 0, dont: 0 })
 
   const filteredDeck = useMemo(() => {
-    if (filter === '3-4' || filter === '5-6') return deck.filter(w => w.l === filter)
+    if (filter === '1-2' || filter === '3-4' || filter === '5-6') return deck.filter(w => w.l === filter)
     if (filter === 'unlearned') return deck.filter(w => progress[w.id] !== 'known')
     return deck
   }, [deck, filter]) // eslint-disable-line react-hooks/exhaustive-deps
@@ -50,72 +50,84 @@ export default function FlashcardPage() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto px-5 py-8 flex flex-col items-center">
-      <h1 className="text-3xl font-bold tracking-tight mb-4">🃏 Flashcard mashqi</h1>
+    <div className="max-w-2xl mx-auto px-5 py-8 fade-up">
+      <div className="mb-6">
+        <div className="text-[11px] uppercase tracking-[0.2em] text-text3 mb-2 font-semibold">Flashcard</div>
+        <h1 className="text-3xl font-bold tracking-tight">Kartochka mashqi</h1>
+      </div>
 
-      <div className="flex flex-wrap gap-2 mb-5 justify-center">
+      <div className="flex flex-wrap gap-1.5 mb-6">
         {FILTERS.map(([key, label]) => (
           <button key={key}
             onClick={() => { setFilter(key); setIdx(0); setFlipped(false) }}
-            className={`px-3.5 py-2 rounded-lg text-sm border ${
-              filter === key ? 'bg-accent text-white border-accent' : 'bg-bg2 text-text2 border-border1 hover:border-accent'
+            className={`px-3 py-1.5 rounded-md text-[13px] font-medium border transition-colors ${
+              filter === key ? 'bg-accent text-white border-accent' : 'bg-bg2 text-text2 border-border1 hover:border-border2 hover:text-text1'
             }`}>{label}</button>
         ))}
       </div>
 
       {done || !card ? (
-        <div className="text-center py-12">
-          <div className="text-5xl mb-4">🎉</div>
-          <h2 className="text-xl font-bold mb-2">Tugadi!</h2>
-          <p className="text-text2 text-sm mb-5">
-            ✅ Bildim: {session.know} · ❌ Bilmadim: {session.dont}
+        <div className="text-center py-16 bg-bg2 border border-border1 rounded-2xl">
+          <div className="tabular text-4xl font-bold text-accent mb-2">{session.know}/{session.know + session.dont}</div>
+          <h2 className="text-lg font-bold mb-1">Mashq tugadi</h2>
+          <p className="text-text2 text-sm mb-6">
+            Bildim: <span className="text-green font-semibold">{session.know}</span>
+            <span className="mx-2 text-text3">·</span>
+            Bilmadim: <span className="text-red font-semibold">{session.dont}</span>
           </p>
           <button onClick={restart}
-            className="bg-accent text-white px-7 py-3 rounded-lg font-semibold hover:-translate-y-0.5 transition-transform">
-            🔁 Qayta boshlash
+            className="bg-accent text-white px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-accent2 transition-colors">
+            Qayta boshlash
           </button>
         </div>
       ) : (
         <>
-          <p className="text-text2 text-sm mb-4">
-            {idx + 1} / {filteredDeck.length} · ✅ {session.know} · ❌ {session.dont}
-          </p>
+          {/* Progress */}
+          <div className="flex items-center gap-3 mb-5">
+            <div className="flex-1 bg-bg3 rounded-full h-1.5 overflow-hidden">
+              <div className="bg-accent h-full rounded-full transition-all duration-300"
+                style={{ width: `${(idx / filteredDeck.length) * 100}%` }} />
+            </div>
+            <span className="tabular text-xs text-text2 font-semibold whitespace-nowrap">{idx + 1} / {filteredDeck.length}</span>
+          </div>
 
-          <div className="w-full max-w-md h-60 [perspective:1000px] cursor-pointer mb-6"
+          {/* Karta */}
+          <div className="w-full h-64 [perspective:1000px] cursor-pointer mb-6"
             onClick={() => setFlipped(f => !f)}>
             <div className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${
               flipped ? '[transform:rotateY(180deg)]' : ''
             }`}>
-              <div className="absolute inset-0 [backface-visibility:hidden] bg-bg2 border border-border1 rounded-xl flex flex-col items-center justify-center p-6 text-center">
-                <div className="text-4xl font-bold">{card.word} <SpeakButton text={card.word} size="lg" /></div>
-                <div className="text-xs text-text2 mt-3">👆 Bosing — ma'nosini ko'ring</div>
+              <div className="absolute inset-0 [backface-visibility:hidden] bg-bg2 border border-border1 rounded-2xl flex flex-col items-center justify-center p-6 text-center">
+                <div className="text-4xl font-bold flex items-center gap-2">{card.word} <SpeakButton text={card.word} size="lg" /></div>
+                <div className="text-xs text-text3 mt-4">Bosing — ma'nosini ko'ring</div>
               </div>
-              <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] bg-bg3 border border-accent rounded-xl flex flex-col items-center justify-center p-6 text-center">
-                <div className="text-xl text-accent font-semibold mb-2">{card.m}</div>
+              <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] bg-bg2 border border-accent/40 rounded-2xl flex flex-col items-center justify-center p-6 text-center">
+                <div className="text-2xl text-accent font-bold mb-3">{card.m}</div>
                 {card.e && (
-                  <div className="text-sm text-text2">
+                  <div className="text-sm space-y-0.5">
                     <div className="text-text1">{card.e}</div>
-                    <div>{card.u}</div>
+                    <div className="text-text2">{card.u}</div>
                   </div>
                 )}
               </div>
             </div>
           </div>
 
-          <div className="flex gap-3 flex-wrap justify-center">
+          {/* Tugmalar */}
+          <div className="grid grid-cols-2 gap-2.5">
             <button onClick={() => answer(false)}
-              className="bg-red text-[#1c0f0f] px-7 py-3 rounded-lg font-bold hover:-translate-y-0.5 transition-transform">
-              ❌ Bilmadim
+              className="bg-bg2 border border-red/40 text-red px-6 py-3.5 rounded-xl font-semibold hover:bg-red/10 transition-colors">
+              Bilmadim
             </button>
             <button onClick={() => answer(true)}
-              className="bg-green text-[#0f1c16] px-7 py-3 rounded-lg font-bold hover:-translate-y-0.5 transition-transform">
-              ✅ Bildim
-            </button>
-            <button onClick={restart}
-              className="bg-bg3 border border-border1 px-5 py-3 rounded-lg text-sm hover:border-accent">
-              🔀 Aralashtir
+              className="bg-bg2 border border-green/40 text-green px-6 py-3.5 rounded-xl font-semibold hover:bg-green/10 transition-colors">
+              Bildim
             </button>
           </div>
+          <button onClick={restart}
+            className="w-full mt-2.5 text-text3 hover:text-text2 text-sm py-2 transition-colors">
+            Aralashtirib qayta boshlash
+          </button>
         </>
       )}
     </div>

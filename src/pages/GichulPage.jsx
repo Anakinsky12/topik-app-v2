@@ -44,7 +44,7 @@ export default function GichulPage() {
                   </div>
                   {checked && q.exp && (
                     <div className="mt-3 bg-bg3 border-l-2 border-accent rounded p-3 text-sm text-text2">
-                      💡 {q.exp}
+                      {q.exp}
                     </div>
                   )}
                 </div>
@@ -70,7 +70,7 @@ export default function GichulPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-5 py-8">
-      <h1 className="text-2xl font-bold mb-1">🎯 기출문제 (Real imtihonlar)</h1>
+      <h1 className="text-2xl font-bold mb-1">기출문제 (Real imtihonlar)</h1>
       <p className="text-text2 text-sm mb-5">Haqiqiy o'tgan TOPIK imtihon savollari — izohlar bilan</p>
       <div className="grid gap-3">
         {GICHUL_TESTS.map(t => {

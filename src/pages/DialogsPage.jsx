@@ -22,7 +22,7 @@ export default function DialogsPage() {
         {/* Suhbat */}
         {d.dialogs?.map((conv, ci) => (
           <div key={ci} className="bg-bg2 border border-border1 rounded-xl p-4 mb-5">
-            <h3 className="font-semibold mb-3 text-accent">💬 Suhbat</h3>
+            <h3 className="font-semibold mb-3 text-accent">Suhbat</h3>
             {conv.lines.map((line, li) => (
               <div key={li} className="mb-3 pb-3 border-b border-border1 last:border-0">
                 <div className="text-xs text-text2 mb-1">{line.who}</div>
@@ -38,7 +38,7 @@ export default function DialogsPage() {
 
         {/* Lug'at */}
         <div className="bg-bg2 border border-border1 rounded-xl p-4 mb-5">
-          <h3 className="font-semibold mb-3">📖 Lug'at</h3>
+          <h3 className="font-semibold mb-3">Lug'at</h3>
           <div className="grid sm:grid-cols-2 gap-2">
             {d.vocab.map((v, i) => (
               <div key={i} className="bg-bg3 rounded-lg p-2.5">
@@ -55,7 +55,7 @@ export default function DialogsPage() {
 
         {/* Iboralar */}
         <div className="bg-bg2 border border-border1 rounded-xl p-4 mb-5">
-          <h3 className="font-semibold mb-3">🗣 Foydali iboralar</h3>
+          <h3 className="font-semibold mb-3">Foydali iboralar</h3>
           {d.phrases.map((p, i) => (
             <div key={i} className="flex items-start gap-2 py-2 border-b border-border1 last:border-0">
               <SpeakButton text={p.kor} />
@@ -70,7 +70,7 @@ export default function DialogsPage() {
         {/* Grammatika */}
         {d.grammar?.length > 0 && (
           <div className="bg-bg2 border border-border1 rounded-xl p-4">
-            <h3 className="font-semibold mb-3">📝 Grammatika</h3>
+            <h3 className="font-semibold mb-3">Grammatika</h3>
             {d.grammar.map((g, i) => (
               <div key={i} className="py-2 border-b border-border1 last:border-0">
                 <div className="text-accent font-semibold">{g.pattern}</div>
@@ -86,7 +86,7 @@ export default function DialogsPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-5 py-8">
-      <h1 className="text-3xl font-bold tracking-tight mb-1">💬 Dialoglar ({DIALOGS.length})</h1>
+      <h1 className="text-3xl font-bold tracking-tight mb-1">Dialoglar ({DIALOGS.length})</h1>
       <p className="text-text2 text-sm mb-5">Hayotiy vaziyatlar bo'yicha suhbatlar — audio bilan</p>
       <div className="grid sm:grid-cols-2 gap-3">
         {DIALOGS.map(d => (

@@ -44,7 +44,8 @@ export default function MockTestPage() {
   // === Test tanlash ===
   if (!test) return (
     <div className="max-w-3xl mx-auto px-5 py-8">
-      <h1 className="text-3xl font-bold tracking-tight mb-1">📊 Mock Test</h1>
+      <div className="text-[11px] uppercase tracking-[0.2em] text-text3 mb-2 font-semibold">Imtihon</div>
+      <h1 className="text-3xl font-bold tracking-tight mb-1">Mock Test</h1>
       <p className="text-text2 text-sm mb-5">Real TOPIK II formatida vaqtli imtihon</p>
       {MOCK_TESTS.map(t => (
         <button key={t.id} onClick={() => start(t)}
@@ -69,7 +70,7 @@ export default function MockTestPage() {
     const pct = Math.round(right / test.questions.length * 100)
     return (
       <div className="max-w-3xl mx-auto px-5 py-8">
-        <h1 className="text-3xl font-bold tracking-tight mb-5">📊 Test Natijalari</h1>
+        <h1 className="text-3xl font-bold tracking-tight mb-5">Test Natijalari</h1>
         <div className="grid grid-cols-3 gap-3 mb-6">
           <div className="bg-bg2 border border-border1 rounded-xl p-4 text-center">
             <div className="text-3xl font-bold text-green">{right}</div>
@@ -92,7 +93,7 @@ export default function MockTestPage() {
             <div key={i} className="bg-bg2 border border-border1 rounded-xl p-4 mb-3">
               <div className="text-sm mb-2 whitespace-pre-line">{i + 1}. {q.q}</div>
               <div className={`text-sm ${ok ? 'text-green' : 'text-red'}`}>
-                Sizning javob: {userAns != null ? q.opts[userAns] : '— (belgilanmagan)'} {ok ? '✅' : '❌'}
+                Sizning javob: {userAns != null ? q.opts[userAns] : '— (belgilanmagan)'} {ok ? '' : ''}
               </div>
               {!ok && <div className="text-sm text-green">To'g'ri javob: {q.opts[q.ans]}</div>}
             </div>
@@ -101,7 +102,7 @@ export default function MockTestPage() {
 
         <button onClick={() => setTest(null)}
           className="bg-accent text-white px-6 py-3 rounded-lg font-semibold mt-2">
-          🔄 Boshqa test
+          Boshqa test
         </button>
       </div>
     )
@@ -163,7 +164,7 @@ export default function MockTestPage() {
         {isLast ? (
           <button onClick={finish}
             className="px-6 py-2.5 rounded-lg bg-green text-[#0f1c16] font-bold text-sm">
-            ✅ Tugatish
+            Tugatish
           </button>
         ) : (
           <button onClick={() => setCurrent(c => c + 1)}

@@ -25,7 +25,7 @@ export default function ReadingPage() {
           <p className="text-[15px] leading-loose whitespace-pre-line">{p.passage}</p>
         </div>
 
-        <h3 className="font-semibold mb-3">❓ Savollar</h3>
+        <h3 className="font-semibold mb-3">Savollar</h3>
         {p.questions.map((q, qi) => (
           <div key={qi} className="bg-bg2 border border-border1 rounded-xl p-4 mb-3">
             <div className="text-[15px] mb-3">{qi + 1}. {q.q}</div>
@@ -59,7 +59,7 @@ export default function ReadingPage() {
             <div className="text-3xl font-bold text-accent">{right} / {p.questions.length}</div>
             <div className="text-text2 text-sm mt-1">{Math.round(right / p.questions.length * 100)}% to'g'ri</div>
             <button onClick={() => { setChecked(false); setAnswers({}) }}
-              className="mt-3 text-sm text-accent">🔄 Qayta urinish</button>
+              className="mt-3 text-sm text-accent">Qayta urinish</button>
           </div>
         )}
       </div>
@@ -68,7 +68,7 @@ export default function ReadingPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-5 py-8">
-      <h1 className="text-2xl font-bold mb-1">📖 O'qish mashqi ({READING_PASSAGES.length})</h1>
+      <h1 className="text-2xl font-bold mb-1">O'qish mashqi ({READING_PASSAGES.length})</h1>
       <p className="text-text2 text-sm mb-5">Matnni o'qing, savollarga javob bering</p>
       <div className="grid sm:grid-cols-2 gap-3">
         {READING_PASSAGES.map(p => (

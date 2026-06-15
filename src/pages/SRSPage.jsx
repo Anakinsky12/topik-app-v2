@@ -51,7 +51,8 @@ export default function SRSPage() {
     const due = dueIds().length
     return (
       <div className="max-w-xl mx-auto px-5 py-8">
-        <h1 className="text-3xl font-bold tracking-tight mb-1">🧠 Aqlli takrorlash (SRS)</h1>
+        <div className="text-[11px] uppercase tracking-[0.2em] text-text3 mb-2 font-semibold">Mashq</div>
+        <h1 className="text-3xl font-bold tracking-tight mb-1">Aqlli takrorlash</h1>
         <p className="text-text2 text-sm mb-6">
           Ilmiy isbotlangan tizim: so'zni eslab qolish ehtimoli pasayganda aynan o'sha payt takrorlaysiz.
         </p>
@@ -69,7 +70,7 @@ export default function SRSPage() {
 
         <button onClick={() => start(true)}
           className="w-full bg-gradient-to-r from-accent to-accent2 text-white rounded-xl py-4 font-bold mb-3 hover:-translate-y-0.5 transition-transform">
-          🚀 Mashqni boshlash {due > 0 ? `(${due} takror + 15 yangi)` : '(15 yangi so\'z)'}
+          Mashqni boshlash {due > 0 ? `(${due} takror + 15 yangi)` : '(15 yangi so\'z)'}
         </button>
         {due > 0 && (
           <button onClick={() => start(false)}
@@ -78,7 +79,7 @@ export default function SRSPage() {
           </button>
         )}
         <p className="text-text2 text-xs mt-4 leading-relaxed">
-          💡 To'g'ri javob bersangiz, so'z keyingi safar uzoqroq vaqtdan keyin chiqadi
+          To'g'ri javob bersangiz, so'z keyingi safar uzoqroq vaqtdan keyin chiqadi
           (1 → 3 → 7 → 14 → 30 → 60 kun). Xato qilsangiz, qaytadan boshlanadi.
         </p>
       </div>
@@ -89,9 +90,9 @@ export default function SRSPage() {
   if (idx >= queue.length) {
     return (
       <div className="max-w-xl mx-auto px-5 py-8 text-center">
-        <div className="text-5xl mb-4">🎉</div>
+        
         <h2 className="text-xl font-bold mb-2">Mashq tugadi!</h2>
-        <p className="text-text2 mb-6">✅ {done.correct} to'g'ri · ❌ {done.wrong} xato</p>
+        <p className="text-text2 mb-6">{done.correct} to'g'ri · {done.wrong} xato</p>
         <button onClick={() => setStarted(false)}
           className="bg-accent text-white px-7 py-3 rounded-lg font-semibold">
           Bosh sahifaga
@@ -107,7 +108,7 @@ export default function SRSPage() {
   return (
     <div className="max-w-xl mx-auto px-5 py-8 flex flex-col items-center">
       <p className="text-text2 text-sm mb-4 self-stretch text-center">
-        {idx + 1} / {queue.length} · ✅ {done.correct} · ❌ {done.wrong}
+        {idx + 1} / {queue.length} · {done.correct} · {done.wrong}
       </p>
 
       <div className="w-full max-w-md h-64 [perspective:1000px] cursor-pointer mb-6"
@@ -115,7 +116,7 @@ export default function SRSPage() {
         <div className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${flipped ? '[transform:rotateY(180deg)]' : ''}`}>
           <div className="absolute inset-0 [backface-visibility:hidden] bg-bg2 border border-border1 rounded-xl flex flex-col items-center justify-center p-6 text-center">
             <div className="text-4xl font-bold mb-2">{word.word} <SpeakButton text={word.word} size="lg" /></div>
-            <div className="text-xs text-text2 mt-3">👆 Ma'nosini ko'rish uchun bosing</div>
+            <div className="text-xs text-text2 mt-3">Ma'nosini ko'rish uchun bosing</div>
           </div>
           <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] bg-bg3 border border-accent rounded-xl flex flex-col items-center justify-center p-6 text-center">
             <div className="text-xl text-accent font-semibold mb-2">{word.m}</div>
@@ -133,11 +134,11 @@ export default function SRSPage() {
         <div className="flex gap-3 w-full max-w-md">
           <button onClick={() => answer(false)}
             className="flex-1 bg-red text-[#1c0f0f] py-3.5 rounded-lg font-bold hover:-translate-y-0.5 transition-transform">
-            ❌ Bilmadim
+            Bilmadim
           </button>
           <button onClick={() => answer(true)}
             className="flex-1 bg-green text-[#0f1c16] py-3.5 rounded-lg font-bold hover:-translate-y-0.5 transition-transform">
-            ✅ Bildim
+            Bildim
           </button>
         </div>
       ) : (

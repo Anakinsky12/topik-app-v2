@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react'
 import { GRAMMAR } from '../data/grammar'
-import { useLang } from '../context/LanguageContext'
 import { SpeakButton } from '../components/Common'
 
 const LEVEL_STYLE = {
@@ -53,11 +52,10 @@ function GrammarCard({ g }) {
 }
 
 export default function GrammarPage() {
-  const { t } = useLang()
   const [filter, setFilter] = useState('all')
   const [search, setSearch] = useState('')
 
-  const FILTERS = [['all', t('all')], ['3-4', '3-4급'], ['5-6', '5-6급']]
+  const FILTERS = [['all', 'Hammasi'], ['3-4', '3-4급'], ['5-6', '5-6급']]
 
   const filtered = useMemo(() => {
     let list = GRAMMAR
@@ -72,18 +70,18 @@ export default function GrammarPage() {
   return (
     <div className="max-w-3xl mx-auto px-5 py-8 fade-up">
       <div className="mb-6">
-        <div className="text-[11px] uppercase tracking-[0.2em] text-text3 mb-2 font-semibold">{t('grammar')}</div>
+        <div className="text-[11px] uppercase tracking-[0.2em] text-text3 mb-2 font-semibold">{'Grammatika'}</div>
         <div className="flex items-baseline gap-3">
-          <h1 className="text-3xl font-bold tracking-tight">{t('grammarSub')}</h1>
+          <h1 className="text-3xl font-bold tracking-tight">{'Pattern'}</h1>
           <span className="tabular text-text2 text-sm">{GRAMMAR.length}</span>
         </div>
-        <p className="text-text2 text-sm mt-1.5">{t('grammarHint')}</p>
+        <p className="text-text2 text-sm mt-1.5">{"Har bir patternni bosib, batafsil izoh va misollarni ko\'ring"}</p>
       </div>
 
       <div className="sticky top-14 z-30 -mx-5 px-5 py-3 bg-bg/85 backdrop-blur-xl border-b border-border1 mb-5">
         <input
           value={search} onChange={e => setSearch(e.target.value)}
-          placeholder={t('searchGrammar')}
+          placeholder={"Pattern yoki ma'no qidiring…"}
           className="w-full bg-bg2 border border-border1 rounded-lg px-4 py-2.5 text-sm mb-2.5 focus:outline-none focus:border-accent transition-colors placeholder:text-text3"
         />
         <div className="flex flex-wrap gap-1.5">

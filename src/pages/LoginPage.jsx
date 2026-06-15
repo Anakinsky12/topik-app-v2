@@ -92,7 +92,7 @@ export default function LoginPage() {
           onClick={handleSubmit} disabled={busy || !email || password.length < 6}
           className="w-full mt-5 bg-gradient-to-r from-accent to-accent2 text-white rounded-lg py-3 text-sm font-bold disabled:opacity-50 hover:-translate-y-0.5 transition-transform"
         >
-          {busy ? 'Kutilmoqda...' : mode === 'login' ? '🔐 Kirish' : "✨ Ro'yxatdan o'tish"}
+          {busy ? 'Kutilmoqda...' : mode === 'login' ? 'Kirish' : "Ro'yxatdan o'tish"}
         </button>
 
         <button

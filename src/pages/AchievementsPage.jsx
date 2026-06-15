@@ -44,7 +44,8 @@ export default function AchievementsPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-5 py-8">
-      <h1 className="text-3xl font-bold tracking-tight mb-1">🏆 Yutuqlar</h1>
+      <div className="text-[11px] uppercase tracking-[0.2em] text-text3 mb-2 font-semibold">Kuzatuv</div>
+      <h1 className="text-3xl font-bold tracking-tight mb-1">Yutuqlar</h1>
       <p className="text-text2 text-sm mb-5">{unlocked} / {ACHIEVEMENTS.length} ochildi</p>
 
       <div className="bg-bg3 rounded-full h-2 overflow-hidden mb-6">

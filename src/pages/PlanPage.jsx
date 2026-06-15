@@ -72,12 +72,13 @@ export default function PlanPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-5 py-8">
-      <h1 className="text-3xl font-bold tracking-tight mb-5">📅 Kunlik Reja</h1>
+      <div className="text-[11px] uppercase tracking-[0.2em] text-text3 mb-2 font-semibold">Kuzatuv</div>
+      <h1 className="text-3xl font-bold tracking-tight mb-5">Kunlik Reja</h1>
 
       <div className="grid grid-cols-3 gap-3 mb-5">
         <div className="bg-bg2 border border-yellow/50 rounded-xl p-4 text-center">
           <div className="text-3xl font-bold text-yellow">{streak}</div>
-          <div className="text-xs text-text2 mt-1">kun streak 🔥</div>
+          <div className="text-xs text-text2 mt-1">kun streak</div>
         </div>
         <div className="bg-bg2 border border-border1 rounded-xl p-4 text-center">
           <div className="text-3xl font-bold text-accent">{daysLeft ?? '—'}</div>
@@ -90,13 +91,13 @@ export default function PlanPage() {
       </div>
 
       <div className="bg-bg2 border border-border1 rounded-xl p-5 mb-5">
-        <label className="text-sm text-text2">🎯 Imtihon sanasi</label>
+        <label className="text-sm text-text2">Imtihon sanasi</label>
         <input type="date" value={examDate} onChange={e => saveExamDate(e.target.value)}
           className="mt-2 block bg-bg3 border border-border1 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-accent" />
       </div>
 
       <div className="bg-bg2 border border-border1 rounded-xl p-5 mb-5">
-        <h2 className="font-semibold mb-3">📆 So'nggi 21 kun
+        <h2 className="font-semibold mb-3">So'nggi 21 kun
           <span className="text-text2 text-sm font-normal ml-2">
             {last21.filter(d => d.active).length} aktiv kun
           </span>
@@ -113,7 +114,7 @@ export default function PlanPage() {
         </div>
       </div>
 
-      <h2 className="font-semibold mb-3">📋 Bugungi vazifalar</h2>
+      <h2 className="font-semibold mb-3">Bugungi vazifalar</h2>
       <div className="grid gap-2.5">
         {TASKS.map(t => {
           const done = doneTasks.includes(t.id)

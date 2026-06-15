@@ -1,39 +1,37 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { useLang } from '../context/LanguageContext'
 import { VOCAB } from '../data/vocab'
 import { useWordProgress } from '../lib/useWordProgress'
 import { useSRS } from '../lib/useSRS'
 
 export default function Dashboard() {
   const { user } = useAuth()
-  const { t } = useLang()
   const { knownCount } = useWordProgress()
   const { dueCount, masteredCount } = useSRS()
   const name = user?.user_metadata?.full_name || user?.email?.split('@')[0] || ''
   const pct = Math.round(knownCount / VOCAB.length * 100)
 
   const GROUPS = [
-    { label: t('groupPractice'), items: [
-      { to: '/srs', icon: '🧠', title: t('srs'), sub: t('srsHint'), hot: true },
-      { to: '/vocab', icon: '📖', title: t('vocab'), sub: t('vocabSub') },
-      { to: '/flashcard', icon: '🃏', title: t('flashcard'), sub: 'Bildim / Bilmadim' },
+    { label: 'Mashq', items: [
+      { to: '/srs', icon: '🧠', title: 'Aqlli takrorlash', sub: 'Aqlli takrorlash — eng samarali usul', hot: true },
+      { to: '/vocab', icon: '📖', title: "Lug'at", sub: "So'zlar" },
+      { to: '/flashcard', icon: '🃏', title: 'Flashcard', sub: 'Bildim / Bilmadim' },
     ]},
-    { label: t('groupMaterials'), items: [
-      { to: '/grammar', icon: '📝', title: t('grammar'), sub: t('grammarSub') },
-      { to: '/dialogs', icon: '💬', title: t('dialogs'), sub: '' },
-      { to: '/phonetics', icon: '🔤', title: t('phonetics'), sub: '' },
+    { label: 'Materiallar', items: [
+      { to: '/grammar', icon: '📝', title: 'Grammatika', sub: 'Pattern' },
+      { to: '/dialogs', icon: '💬', title: 'Dialoglar', sub: '' },
+      { to: '/phonetics', icon: '🔤', title: 'Talaffuz', sub: '' },
     ]},
-    { label: t('groupExam'), items: [
-      { to: '/reading', icon: '📑', title: t('reading'), sub: '' },
-      { to: '/mock-test', icon: '⏱️', title: t('mockTest'), sub: '' },
-      { to: '/gichul', icon: '🎯', title: t('gichul'), sub: '' },
-      { to: '/ai-writing', icon: '✍️', title: t('aiWriting'), sub: '', hot: true },
+    { label: 'Imtihon', items: [
+      { to: '/reading', icon: '📑', title: "O'qish mashqi", sub: '' },
+      { to: '/mock-test', icon: '⏱️', title: 'Mock Test', sub: '' },
+      { to: '/gichul', icon: '🎯', title: '기출문제', sub: '' },
+      { to: '/ai-writing', icon: '✍️', title: 'AI Yozuv', sub: '', hot: true },
     ]},
-    { label: t('groupTrack'), items: [
-      { to: '/stats', icon: '📈', title: t('stats'), sub: '' },
-      { to: '/achievements', icon: '🏆', title: t('achievements'), sub: '' },
-      { to: '/plan', icon: '📅', title: t('plan'), sub: '' },
+    { label: 'Kuzatuv', items: [
+      { to: '/stats', icon: '📈', title: 'Statistika', sub: '' },
+      { to: '/achievements', icon: '🏆', title: 'Yutuqlar', sub: '' },
+      { to: '/plan', icon: '📅', title: 'Kunlik Reja', sub: '' },
     ]},
   ]
 
@@ -41,8 +39,8 @@ export default function Dashboard() {
     <div className="max-w-5xl mx-auto px-5 py-8 fade-up">
       <div className="mb-8">
         <div className="text-[11px] uppercase tracking-[0.2em] text-text3 mb-2 font-semibold">TOPIK II · 한국어</div>
-        <h1 className="text-3xl font-bold tracking-tight">{t('greeting')}, {name}</h1>
-        <p className="text-text2 text-sm mt-1.5">{t('dashSub')}</p>
+        <h1 className="text-3xl font-bold tracking-tight">{'Salom'}, {name}</h1>
+        <p className="text-text2 text-sm mt-1.5">{"Bugun o'rganishni davom ettiramizmi?"}</p>
       </div>
 
       {dueCount > 0 && (
@@ -51,8 +49,8 @@ export default function Dashboard() {
           <div className="flex items-center gap-4">
             <div className="w-11 h-11 rounded-xl bg-accent/15 grid place-items-center text-xl shrink-0">🧠</div>
             <div>
-              <div className="font-semibold text-[15px]"><span className="tabular text-accent">{dueCount}</span> {t('srsDue')}</div>
-              <div className="text-xs text-text2 mt-0.5">{t('srsHint')}</div>
+              <div className="font-semibold text-[15px]"><span className="tabular text-accent">{dueCount}</span> {"ta so\'z takrorlash kerak"}</div>
+              <div className="text-xs text-text2 mt-0.5">{'Aqlli takrorlash — eng samarali usul'}</div>
             </div>
           </div>
           <span className="text-text3 group-hover:text-accent group-hover:translate-x-0.5 transition-all text-lg">→</span>
@@ -61,10 +59,10 @@ export default function Dashboard() {
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border1 rounded-2xl overflow-hidden mb-3">
         {[
-          [VOCAB.length, t('totalWords')],
-          [knownCount, t('learned')],
-          [masteredCount, t('mastered')],
-          [`${pct}%`, t('progress')],
+          [VOCAB.length, "Jami so'z"],
+          [knownCount, "O'rganildi"],
+          [masteredCount, 'Mukammal'],
+          [`${pct}%`, 'Progress'],
         ].map(([num, label]) => (
           <div key={label} className="bg-bg2 px-4 py-5 text-center">
             <div className="tabular text-2xl font-bold text-text1">{num}</div>

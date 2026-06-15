@@ -71,7 +71,8 @@ Quyidagi JSON formatda javob bering (boshqa hech narsa yozmang, faqat JSON):
 
   return (
     <div className="max-w-2xl mx-auto px-5 py-8">
-      <h1 className="text-3xl font-bold tracking-tight mb-1">✍️ AI Yozuv tekshiruvi</h1>
+      <div className="text-[11px] uppercase tracking-[0.2em] text-text3 mb-2 font-semibold">Imtihon</div>
+      <h1 className="text-3xl font-bold tracking-tight mb-1">AI Yozuv</h1>
       <p className="text-text2 text-sm mb-5">Insho yozing — AI baholaydi, xatolarni tuzatadi, ball beradi</p>
 
       {/* Mavzu tanlash */}
@@ -103,7 +104,7 @@ Quyidagi JSON formatda javob bering (boshqa hech narsa yozmang, faqat JSON):
         </span>
         <button onClick={check} disabled={loading || charCount < 20}
           className="bg-gradient-to-r from-accent to-accent2 text-white px-6 py-2.5 rounded-lg font-bold text-sm disabled:opacity-50 hover:-translate-y-0.5 transition-transform">
-          {loading ? '🤔 Tekshirilmoqda...' : '✨ AI bilan tekshirish'}
+          {loading ? 'Tekshirilmoqda...' : 'AI bilan tekshirish'}
         </button>
       </div>
 
@@ -148,26 +149,26 @@ Quyidagi JSON formatda javob bering (boshqa hech narsa yozmang, faqat JSON):
 
           {result.strengths && (
             <div className="bg-bg2 border border-green/30 rounded-xl p-4">
-              <div className="font-semibold text-green text-sm mb-1.5">✅ Kuchli tomonlar</div>
+              <div className="font-semibold text-green text-sm mb-1.5">Kuchli tomonlar</div>
               <p className="text-sm text-text2 leading-relaxed">{result.strengths}</p>
             </div>
           )}
 
           {result.weaknesses && (
             <div className="bg-bg2 border border-yellow/30 rounded-xl p-4">
-              <div className="font-semibold text-yellow text-sm mb-1.5">⚠️ Yaxshilash kerak</div>
+              <div className="font-semibold text-yellow text-sm mb-1.5">Yaxshilash kerak</div>
               <p className="text-sm text-text2 leading-relaxed">{result.weaknesses}</p>
             </div>
           )}
 
           {result.corrections?.length > 0 && (
             <div className="bg-bg2 border border-border1 rounded-xl p-4">
-              <div className="font-semibold text-sm mb-3">🔧 Xato tuzatishlar</div>
+              <div className="font-semibold text-sm mb-3">Xato tuzatishlar</div>
               {result.corrections.map((c, i) => (
                 <div key={i} className="mb-3 pb-3 border-b border-border1 last:border-0">
                   <div className="text-sm text-red line-through">{c.wrong}</div>
                   <div className="text-sm text-green">{c.fixed}</div>
-                  {c.why && <div className="text-xs text-text2 mt-1">💡 {c.why}</div>}
+                  {c.why && <div className="text-xs text-text2 mt-1">{c.why}</div>}
                 </div>
               ))}
             </div>
@@ -175,7 +176,7 @@ Quyidagi JSON formatda javob bering (boshqa hech narsa yozmang, faqat JSON):
 
           {result.advice && (
             <div className="bg-accent/10 border border-accent/30 rounded-xl p-4">
-              <div className="font-semibold text-accent text-sm mb-1.5">🎯 Maslahat</div>
+              <div className="font-semibold text-accent text-sm mb-1.5">Maslahat</div>
               <p className="text-sm text-text2 leading-relaxed">{result.advice}</p>
             </div>
           )}
