@@ -16,6 +16,7 @@ export default function Navbar() {
     { title: "O'rganish", links: [
       ['/vocab', '📖', "Lug'at"],
       ['/flashcard', '🃏', 'Flashcard'],
+      ['/learn', '🎴', 'Yodlash'],
       ['/grammar', '📝', 'Grammatika'],
       ['/dialogs', '💬', 'Dialoglar'],
       ['/phonetics', '🔤', 'Talaffuz'],

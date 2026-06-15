@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard'
 import ProfilePage from './pages/ProfilePage'
 import VocabPage from './pages/VocabPage'
 import FlashcardPage from './pages/FlashcardPage'
+import LearnPage from './pages/LearnPage'
 import GrammarPage from './pages/GrammarPage'
 import MockTestPage from './pages/MockTestPage'
 import StatsPage from './pages/StatsPage'
@@ -41,6 +42,7 @@ export default function App() {
             <Route path="/srs" element={<SRSPage />} />
             <Route path="/vocab" element={<VocabPage />} />
             <Route path="/flashcard" element={<FlashcardPage />} />
+            <Route path="/learn" element={<LearnPage />} />
             <Route path="/grammar" element={<GrammarPage />} />
             <Route path="/dialogs" element={<DialogsPage />} />
             <Route path="/phonetics" element={<PhoneticsPage />} />

@@ -14,6 +14,7 @@ export default function Dashboard() {
   const GROUPS = [
     { label: 'Mashq', items: [
       { to: '/srs', icon: '🧠', title: 'Aqlli takrorlash', sub: 'Aqlli takrorlash — eng samarali usul', hot: true },
+      { to: '/learn', icon: '🎴', title: 'Yodlash', sub: 'Bittalab ko\'rib yodlash', hot: true },
       { to: '/vocab', icon: '📖', title: "Lug'at", sub: "So'zlar" },
       { to: '/flashcard', icon: '🃏', title: 'Flashcard', sub: 'Bildim / Bilmadim' },
     ]},
