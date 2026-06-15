@@ -1,62 +1,53 @@
 import { useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { LiveClock } from './Common'
-
-const GROUPS = [
-  {
-    title: 'Asosiy',
-    links: [
-      ['/', '🏠', 'Bosh'],
-      ['/srs', '🧠', 'Aqlli takror (SRS)'],
-      ['/stats', '📈', 'Statistika'],
-      ['/plan', '📅', 'Kunlik reja'],
-    ],
-  },
-  {
-    title: "O'rganish",
-    links: [
-      ['/vocab', '📖', "Lug'at"],
-      ['/flashcard', '🃏', 'Kartochka'],
-      ['/grammar', '📝', 'Grammatika'],
-      ['/dialogs', '💬', 'Dialoglar'],
-      ['/phonetics', '🔤', 'Talaffuz'],
-    ],
-  },
-  {
-    title: 'Imtihon',
-    links: [
-      ['/reading', '📑', "O'qish mashqi"],
-      ['/mock-test', '⏱️', 'Mock Test'],
-      ['/gichul', '🎯', '기출문제'],
-      ['/ai-writing', '✍️', 'AI Yozuv'],
-    ],
-  },
-  {
-    title: 'Boshqa',
-    links: [
-      ['/achievements', '🏆', 'Yutuqlar'],
-      ['/profile', '👤', 'Profil'],
-    ],
-  },
-]
-
-const BOTTOM = [
-  ['/', '🏠', 'Bosh'],
-  ['/srs', '🧠', 'SRS'],
-  ['/vocab', '📖', "Lug'at"],
-  ['/grammar', '📝', 'Gram'],
-  ['/stats', '📈', 'Stats'],
-]
+import LangSwitcher from './LangSwitcher'
+import { useLang } from '../context/LanguageContext'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const loc = useLocation()
+  const { t } = useLang()
+
+  const GROUPS = [
+    { title: t('navMain'), links: [
+      ['/', '🏠', t('home')],
+      ['/srs', '🧠', t('srs')],
+      ['/stats', '📈', t('stats')],
+      ['/plan', '📅', t('plan')],
+    ]},
+    { title: t('navLearn'), links: [
+      ['/vocab', '📖', t('vocab')],
+      ['/flashcard', '🃏', t('flashcard')],
+      ['/grammar', '📝', t('grammar')],
+      ['/dialogs', '💬', t('dialogs')],
+      ['/phonetics', '🔤', t('phonetics')],
+    ]},
+    { title: t('navExam'), links: [
+      ['/reading', '📑', t('reading')],
+      ['/mock-test', '⏱️', t('mockTest')],
+      ['/gichul', '🎯', t('gichul')],
+      ['/ai-writing', '✍️', t('aiWriting')],
+    ]},
+    { title: t('navOther'), links: [
+      ['/achievements', '🏆', t('achievements')],
+      ['/profile', '👤', t('profile')],
+    ]},
+  ]
+
+  const BOTTOM = [
+    ['/', '🏠', t('home')],
+    ['/srs', '🧠', t('srsShort')],
+    ['/vocab', '📖', t('vocab')],
+    ['/grammar', '📝', t('grammar')],
+    ['/stats', '📈', t('stats')],
+  ]
+
   const allLinks = GROUPS.flatMap(g => g.links)
   const current = allLinks.find(([to]) => to === loc.pathname)
 
   return (
     <>
-      {/* === Yuqori panel === */}
       <nav className="sticky top-0 z-50 bg-bg/80 backdrop-blur-xl border-b border-border1 px-4 h-14 flex items-center justify-between">
         <button onClick={() => setOpen(true)}
           className="flex items-center gap-2.5 text-text1 hover:text-accent transition-colors">
@@ -67,21 +58,23 @@ export default function Navbar() {
         </button>
 
         {current && (
-          <span className="text-sm text-text2 font-medium absolute left-1/2 -translate-x-1/2 hidden sm:flex items-center gap-1.5">
+          <span className="text-sm text-text2 font-medium absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-1.5">
             <span>{current[1]}</span> {current[2]}
           </span>
         )}
 
-        <LiveClock />
+        <div className="flex items-center gap-2.5">
+          <LangSwitcher />
+          <div className="hidden sm:block"><LiveClock /></div>
+        </div>
       </nav>
 
-      {/* === Hamburger menyu === */}
       {open && (
         <>
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60]" onClick={() => setOpen(false)} />
           <div className="fixed top-0 left-0 bottom-0 w-72 max-w-[82vw] bg-bg2 border-r border-border1 z-[70] overflow-y-auto animate-[slideIn_.22s_cubic-bezier(0.16,1,0.3,1)]">
             <div className="flex items-center justify-between px-4 h-14 border-b border-border1 sticky top-0 bg-bg2/95 backdrop-blur-xl">
-              <span className="font-bold tracking-tight text-accent">TOPIK menyu</span>
+              <span className="font-bold tracking-tight text-accent">TOPIK {t('menu')}</span>
               <button onClick={() => setOpen(false)}
                 className="grid place-items-center w-8 h-8 rounded-lg text-text2 hover:text-text1 hover:bg-bg3 transition-colors">✕</button>
             </div>
@@ -107,7 +100,6 @@ export default function Navbar() {
         </>
       )}
 
-      {/* === Pastki menyu (mobil) === */}
       <nav className="fixed bottom-0 left-0 right-0 z-50 bg-bg2/95 backdrop-blur-xl border-t border-border1 flex sm:hidden">
         {BOTTOM.map(([to, icon, label]) => (
           <NavLink key={to} to={to} end={to === '/'}
