@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useAuth } from '../context/AuthContext'
+import { useLang } from '../context/LanguageContext'
 import { supabase } from '../lib/supabase'
 import { VOCAB } from '../data/vocab'
 import { useWordProgress } from '../lib/useWordProgress'
@@ -7,6 +8,7 @@ import { useSRS } from '../lib/useSRS'
 
 export default function ProfilePage() {
   const { user, signOut } = useAuth()
+  const { t } = useLang()
   const { knownCount } = useWordProgress()
   const { masteredCount, dueCount } = useSRS()
   const [profile, setProfile] = useState({ display_name: '', target_level: 5, exam_date: '', daily_words: 20 })
@@ -39,7 +41,7 @@ export default function ProfilePage() {
     })
     setSaving(false)
     if (error) { setMsg(`Xato: ${error.message}`) }
-    else { setMsg('Saqlandi'); setEditing(false); setTimeout(() => setMsg(''), 2000) }
+    else { setMsg(t('saved')); setEditing(false); setTimeout(() => setMsg(''), 2000) }
   }
 
   const set = (k) => (e) => setProfile(p => ({ ...p, [k]: e.target.value }))
@@ -78,7 +80,7 @@ export default function ProfilePage() {
           <div className="flex-1 bg-bg2 border border-border1 rounded-xl px-4 py-3">
             <div className="text-[11px] uppercase tracking-wider text-text3 font-semibold">Imtihongacha</div>
             <div className={`tabular text-xl font-bold mt-0.5 ${daysLeft < 0 ? 'text-text2' : daysLeft <= 30 ? 'text-red' : 'text-text1'}`}>
-              {daysLeft < 0 ? "O'tdi" : `${daysLeft} kun`}
+              {daysLeft < 0 ? t('examPassed') : `${daysLeft} ${t('days')}`}
             </div>
           </div>
         )}
@@ -87,9 +89,9 @@ export default function ProfilePage() {
       {/* Statistika */}
       <div className="grid grid-cols-3 gap-px bg-border1 rounded-2xl overflow-hidden mb-3">
         {[
-          [knownCount, "O'rganildi"],
-          [masteredCount, 'Mukammal'],
-          [`${pct}%`, 'Progress'],
+          [knownCount, t('learned')],
+          [masteredCount, t('mastered')],
+          [`${pct}%`, t('progress')],
         ].map(([num, label]) => (
           <div key={label} className="bg-bg2 px-4 py-4 text-center">
             <div className="tabular text-xl font-bold">{num}</div>
@@ -117,35 +119,35 @@ export default function ProfilePage() {
 
         {!editing ? (
           <div className="divide-y divide-border1">
-            <Row label="Ism" value={profile.display_name || '—'} />
-            <Row label="Maqsad daraja" value={`${profile.target_level}급`} />
-            <Row label="Imtihon sanasi" value={profile.exam_date || 'Belgilanmagan'} />
-            <Row label="Kunlik so'z" value={profile.daily_words} />
+            <Row label={t('name')} value={profile.display_name || '—'} />
+            <Row label={t('targetLevel')} value={`${profile.target_level}급`} />
+            <Row label={t('examDate')} value={profile.exam_date || t('notSet')} />
+            <Row label={t('dailyWords')} value={profile.daily_words} />
           </div>
         ) : (
           <div className="p-5 space-y-4">
-            <Field label="Ism">
-              <input value={profile.display_name} onChange={set('display_name')} placeholder="Ismingiz"
+            <Field label={t('name')}>
+              <input value={profile.display_name} onChange={set('display_name')} placeholder={t('name')}
                 className="w-full bg-bg3 border border-border1 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:border-accent" />
             </Field>
-            <Field label="Maqsad daraja">
+            <Field label={t('targetLevel')}>
               <select value={profile.target_level} onChange={set('target_level')}
                 className="w-full bg-bg3 border border-border1 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:border-accent">
                 {[3, 4, 5, 6].map(l => <option key={l} value={l}>{l}급</option>)}
               </select>
             </Field>
-            <Field label="Imtihon sanasi">
+            <Field label={t('examDate')}>
               <input type="date" value={profile.exam_date} onChange={set('exam_date')}
                 className="w-full bg-bg3 border border-border1 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:border-accent" />
             </Field>
-            <Field label="Kunlik so'z soni">
+            <Field label={t('dailyWords')}>
               <input type="number" min="5" max="100" value={profile.daily_words} onChange={set('daily_words')}
                 className="w-full bg-bg3 border border-border1 rounded-lg px-3.5 py-2.5 text-sm focus:outline-none focus:border-accent" />
             </Field>
             <div className="flex gap-2.5 pt-1">
               <button onClick={save} disabled={saving}
                 className="flex-1 bg-accent text-white rounded-lg py-2.5 text-sm font-bold hover:bg-accent2 transition-colors disabled:opacity-50">
-                {saving ? 'Saqlanmoqda…' : 'Saqlash'}
+                {saving ? t('saving') : t('save')}
               </button>
               <button onClick={() => setEditing(false)}
                 className="px-5 border border-border1 rounded-lg text-sm text-text2 hover:text-text1 transition-colors">

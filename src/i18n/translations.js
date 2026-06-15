@@ -76,7 +76,14 @@ export const TRANSLATIONS = {
     dailyWords: "Kunlik so'z",
     signOut: 'Hisobdan chiqish',
     saved: 'Saqlandi',
-    // Til
+    // Statistika
+    statsVocabReady: "Lug'at tayyorgarligi",
+    wordsLearned: "so'z o'rganildi",
+    byLevel: 'Daraja bo\'yicha',
+    byCategory: 'Kategoriyalar bo\'yicha',
+    mockHistory: 'Mock test tarixi',
+    noTests: 'Hali test topshirmadingiz. Birinchi mock testdan boshlang.',
+    passed: "o'tdi",
     language: 'Til',
   },
   en: {
@@ -147,6 +154,13 @@ export const TRANSLATIONS = {
     dailyWords: 'Daily words',
     signOut: 'Sign out',
     saved: 'Saved',
+    statsVocabReady: 'Vocabulary readiness',
+    wordsLearned: 'words learned',
+    byLevel: 'By level',
+    byCategory: 'By category',
+    mockHistory: 'Mock test history',
+    noTests: 'No tests taken yet. Start with the first mock test.',
+    passed: 'passed',
     language: 'Language',
   },
   ko: {
@@ -217,6 +231,13 @@ export const TRANSLATIONS = {
     dailyWords: '일일 단어',
     signOut: '로그아웃',
     saved: '저장됨',
+    statsVocabReady: '단어 준비도',
+    wordsLearned: '단어 학습함',
+    byLevel: '등급별',
+    byCategory: '분류별',
+    mockHistory: '모의고사 기록',
+    noTests: '아직 시험을 보지 않았습니다. 첫 모의고사를 시작하세요.',
+    passed: '합격',
     language: '언어',
   },
 }

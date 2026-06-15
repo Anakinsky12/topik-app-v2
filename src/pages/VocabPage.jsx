@@ -1,18 +1,10 @@
 import { useMemo, useState } from 'react'
 import { VOCAB } from '../data/vocab'
 import { useWordProgress } from '../lib/useWordProgress'
+import { useLang } from '../context/LanguageContext'
 import { SpeakButton } from '../components/Common'
 
 const PER_PAGE = 30
-const FILTERS = [
-  ['all', 'Hammasi'],
-  ['1-2', '1-2급'],
-  ['3-4', '3-4급'],
-  ['5-6', '5-6급'],
-  ['learned', "O'rganildi"],
-  ['rest', 'Qolgan'],
-]
-
 const LEVEL_STYLE = {
   '1-2': 'bg-green/12 text-green',
   '3-4': 'bg-yellow/12 text-yellow',
@@ -21,9 +13,19 @@ const LEVEL_STYLE = {
 
 export default function VocabPage() {
   const { progress, toggleLearned, knownCount } = useWordProgress()
+  const { t } = useLang()
   const [filter, setFilter] = useState('all')
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(1)
+
+  const FILTERS = [
+    ['all', t('all')],
+    ['1-2', '1-2급'],
+    ['3-4', '3-4급'],
+    ['5-6', '5-6급'],
+    ['learned', t('learnedFilter')],
+    ['rest', t('restFilter')],
+  ]
 
   const filtered = useMemo(() => {
     let list = VOCAB
@@ -44,23 +46,21 @@ export default function VocabPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-5 py-8 fade-up">
-      {/* Sarlavha */}
       <div className="mb-6">
-        <div className="text-[11px] uppercase tracking-[0.2em] text-text3 mb-2 font-semibold">Lug'at</div>
+        <div className="text-[11px] uppercase tracking-[0.2em] text-text3 mb-2 font-semibold">{t('vocab')}</div>
         <div className="flex items-baseline gap-3">
-          <h1 className="text-3xl font-bold tracking-tight">So'zlar</h1>
+          <h1 className="text-3xl font-bold tracking-tight">{t('vocabSub')}</h1>
           <span className="tabular text-text2 text-sm">
             <span className="text-accent font-semibold">{knownCount}</span> / {VOCAB.length}
           </span>
         </div>
       </div>
 
-      {/* Qidiruv + filtr — sticky */}
       <div className="sticky top-14 z-30 -mx-5 px-5 py-3 bg-bg/85 backdrop-blur-xl border-b border-border1 mb-5">
         <input
           value={search}
           onChange={e => { setSearch(e.target.value); setPage(1) }}
-          placeholder="So'z, ma'no yoki kategoriya qidiring…"
+          placeholder={t('searchVocab')}
           className="w-full bg-bg2 border border-border1 rounded-lg px-4 py-2.5 text-sm mb-2.5 focus:outline-none focus:border-accent transition-colors placeholder:text-text3"
         />
         <div className="flex flex-wrap gap-1.5">
@@ -81,8 +81,8 @@ export default function VocabPage() {
       {slice.length === 0 ? (
         <div className="text-center py-20 text-text2">
           <div className="text-3xl mb-3 opacity-40">⌕</div>
-          <p className="font-medium">Hech narsa topilmadi</p>
-          <p className="text-xs text-text3 mt-1">Boshqa so'z yoki filtr bilan urinib ko'ring</p>
+          <p className="font-medium">{t('nothingFound')}</p>
+          <p className="text-xs text-text3 mt-1">{t('tryOther')}</p>
         </div>
       ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
@@ -98,7 +98,7 @@ export default function VocabPage() {
                   className={`absolute top-3.5 right-3.5 w-5 h-5 rounded-md border grid place-items-center text-[11px] transition-colors ${
                     learned ? 'bg-green border-green text-bg' : 'border-border2 text-transparent hover:border-accent'
                   }`}
-                  title={learned ? "O'rganilgan" : "O'rganildi deb belgilash"}>
+                  title={t('markLearned')}>
                   ✓
                 </button>
                 <div className="flex items-center gap-2 pr-7">
